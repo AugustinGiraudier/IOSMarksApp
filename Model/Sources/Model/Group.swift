@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Group : Identifiable, Equatable{
+public struct Group : Identifiable, Equatable, Averagable{
     
     // ==========================================
     //      Attributs and Properties
@@ -17,16 +17,8 @@ public struct Group : Identifiable, Equatable{
     public private(set) var name : String
     public private(set) var UEs : [UE] = []
     
-    public var average : Float {
-        get{
-            var sum : Float = 0
-            var sumCoef : Float = 0
-            for ue in UEs{
-                sum += ue.Mark * ue.Coef
-                sumCoef += ue.Coef
-            }
-            return sumCoef > 0 ? sum/sumCoef : 0
-        }
+    public var MarkableList: [Markable]{
+        get{UEs}
     }
     
     // ==========================================

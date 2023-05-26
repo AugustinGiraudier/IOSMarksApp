@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UE : Identifiable, Equatable{
+public struct UE : Identifiable, Equatable, Markable, Averagable{
     
     // ==========================================
     //      Attributs and Properties
@@ -44,16 +44,8 @@ public struct UE : Identifiable, Equatable{
     
     public private(set) var subjects : [Subject] = []
     
-    public var average : Float {
-        get{
-            var sum : Float = 0
-            var sumCoef : Float = 0
-            for sub in subjects{
-                sum += sub.Mark * sub.Coef
-                sumCoef += sub.Coef
-            }
-            return sumCoef > 0 ? sum/sumCoef : 0
-        }
+    public var MarkableList: [Markable]{
+        get{subjects}
     }
     
     // ==========================================

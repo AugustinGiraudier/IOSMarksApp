@@ -8,7 +8,7 @@
 import Foundation
 
 
-public struct Subject : Identifiable, Equatable{
+public struct Subject : Identifiable, Equatable, Markable{
     
     // ==========================================
     //      Static members

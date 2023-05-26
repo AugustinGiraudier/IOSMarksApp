@@ -19,6 +19,8 @@
 		EC0159B52A20B7BA00D6C3F6 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159B42A20B7BA00D6C3F6 /* BlockView.swift */; };
 		EC0159B72A20D19200D6C3F6 /* UEsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159B62A20D19200D6C3F6 /* UEsView.swift */; };
 		EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159B82A20D23000D6C3F6 /* UEView.swift */; };
+		EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */; };
+		EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		EC0159B42A20B7BA00D6C3F6 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
 		EC0159B62A20D19200D6C3F6 /* UEsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEsView.swift; sourceTree = "<group>"; };
 		EC0159B82A20D23000D6C3F6 /* UEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEView.swift; sourceTree = "<group>"; };
+		EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEPage.swift; sourceTree = "<group>"; };
+		EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 				EC0159B42A20B7BA00D6C3F6 /* BlockView.swift */,
 				EC0159B62A20D19200D6C3F6 /* UEsView.swift */,
 				EC0159B82A20D23000D6C3F6 /* UEView.swift */,
+				EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */,
+				EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,8 +298,10 @@
 			files = (
 				EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */,
 				EC0159B52A20B7BA00D6C3F6 /* BlockView.swift in Sources */,
+				EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */,
 				EC0159B32A20B2BC00D6C3F6 /* BlocksView.swift in Sources */,
 				EC0159B12A20B12A00D6C3F6 /* HomeView.swift in Sources */,
+				EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */,
 				EC0159832A20B01E00D6C3F6 /* AppApp.swift in Sources */,
 				EC0159B72A20D19200D6C3F6 /* UEsView.swift in Sources */,
 			);
