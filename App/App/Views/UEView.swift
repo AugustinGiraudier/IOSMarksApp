@@ -15,14 +15,17 @@ struct UEView: View {
     @State private var barColor : Color = .red
     @State private var rangeWidth : CGFloat = 1
     
+    @State private var canModify : Bool = false
+    
     private var BarColor : Color {
         get{
             return (value >= CGFloat(Subject.MAX_MARK/2)) ? .green : .red
         }
     }
     
-    init(mark : CGFloat = 10){
-        self.value = mark
+    init(isModifiable : Bool = false, mark : CGFloat = 10){
+        _value = State(initialValue: mark)
+        _canModify = State(initialValue: isModifiable)
     }
     
     var body: some View {
@@ -95,6 +98,7 @@ struct UEView: View {
 
     
     private func updateRange(value: DragGesture.Value){
+        guard canModify else {return}
         let dragLocation : CGFloat = value.location.x
         let ratio = dragLocation / rangeWidth
         let max = CGFloat(Subject.MAX_MARK)
@@ -118,6 +122,6 @@ struct UEView: View {
 
 struct UEView_Previews: PreviewProvider {
     static var previews: some View {
-        UEView(mark:10)
+        UEView(isModifiable: false ,mark:10)
     }
 }

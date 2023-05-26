@@ -34,8 +34,8 @@ struct UEsView: View {
             Divider()
                 .padding(.bottom, 5)
             
-            UEView()
-            UEView()
+            UEView(isModifiable: false, mark: 6.27)
+            UEView(isModifiable: false, mark: 12.4)
             
            
             
