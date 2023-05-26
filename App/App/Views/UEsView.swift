@@ -26,8 +26,6 @@ struct UEsView: View {
                 
             }
             
-            //Divider()
-            
             Text("Détail des UE")
                 .padding(.top,1)
             

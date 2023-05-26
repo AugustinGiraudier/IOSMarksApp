@@ -21,6 +21,8 @@
 		EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159B82A20D23000D6C3F6 /* UEView.swift */; };
 		EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */; };
 		EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */; };
+		EC0159C02A21456300D6C3F6 /* SubjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */; };
+		EC0159C22A21498300D6C3F6 /* UEVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159C12A21498300D6C3F6 /* UEVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		EC0159B82A20D23000D6C3F6 /* UEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEView.swift; sourceTree = "<group>"; };
 		EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEPage.swift; sourceTree = "<group>"; };
 		EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
+		EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectVM.swift; sourceTree = "<group>"; };
+		EC0159C12A21498300D6C3F6 /* UEVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		EC0159812A20B01E00D6C3F6 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				EC0159BE2A21454D00D6C3F6 /* ViewModel */,
 				EC0159AF2A20B0D900D6C3F6 /* Views */,
 				EC0159822A20B01E00D6C3F6 /* AppApp.swift */,
 				EC0159862A20B01E00D6C3F6 /* Assets.xcassets */,
@@ -161,6 +166,15 @@
 				EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EC0159BE2A21454D00D6C3F6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */,
+				EC0159C12A21498300D6C3F6 /* UEVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,11 +312,13 @@
 			files = (
 				EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */,
 				EC0159B52A20B7BA00D6C3F6 /* BlockView.swift in Sources */,
+				EC0159C22A21498300D6C3F6 /* UEVM.swift in Sources */,
 				EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */,
 				EC0159B32A20B2BC00D6C3F6 /* BlocksView.swift in Sources */,
 				EC0159B12A20B12A00D6C3F6 /* HomeView.swift in Sources */,
 				EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */,
 				EC0159832A20B01E00D6C3F6 /* AppApp.swift in Sources */,
+				EC0159C02A21456300D6C3F6 /* SubjectVM.swift in Sources */,
 				EC0159B72A20D19200D6C3F6 /* UEsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,6 +37,7 @@ struct UEView: View {
                             Image(systemName: canModify ? "lock.open" : "lock")
                                 .font(.system(size: 25))
                                 .padding(.trailing, canModify ? 0 : 5)
+                                .foregroundColor(canModify ? .blue : .gray)
                                 .onTapGesture {
                                     canModify.toggle()
                                 }

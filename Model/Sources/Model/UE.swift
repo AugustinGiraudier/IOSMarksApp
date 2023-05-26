@@ -74,7 +74,8 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
     //      Methods
     // ==========================================
     
-    public mutating func addSubject(subjectToAdd sub : Subject) -> Bool {
+    public mutating func addSubject(subjectToAdd sub : Subject?) -> Bool {
+        guard let sub = sub else {return false}
         guard(subjects.allSatisfy { $0.id != sub.id }) else {return false}
         
         subjects.append(sub)
@@ -85,6 +86,9 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         subjects.removeAll{$0 == sub}
     }
     
+    public mutating func clearSubjects(){
+        subjects = []
+    }
     // ==========================================
     //      Equality protocol
     // ==========================================
