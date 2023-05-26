@@ -49,7 +49,7 @@ struct BlocksView: View {
         .padding(.horizontal,25)
         .padding(.vertical,20)
         .frame(maxWidth: .infinity)
-        .background(Rectangle().fill(Color.gray.opacity(0.2)).cornerRadius(20))
+        .background(Rectangle().fill(Color.gray.opacity(0.1)).cornerRadius(20))
     }
 }
 

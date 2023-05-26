@@ -38,11 +38,11 @@ struct UEPage: View {
                     }
                     .padding(.top, 20)
                     
-                    UEView(isModifiable: true)
-                    UEView(isModifiable: true)
-                    UEView(isModifiable: true)
-                    UEView(isModifiable: true)
-                    UEView(isModifiable: true)
+                    UEView(isModifiable: true, canNavigate: false)
+                    UEView(isModifiable: true, canNavigate: false)
+                    UEView(isModifiable: true, canNavigate: false)
+                    UEView(isModifiable: true, canNavigate: false)
+                    UEView(isModifiable: true, canNavigate: false)
                     
                     Spacer()
                 }

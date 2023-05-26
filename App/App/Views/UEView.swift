@@ -13,11 +13,12 @@ struct UEView: View {
     @State private var value : CGFloat = 7
     @State private var canModify : Bool = false
     
+    private let isMarkModifiable : Bool
     private let canNavigate : Bool
     
     init(isModifiable : Bool = false, mark : CGFloat = 10, canNavigate : Bool = true){
         _value = State(initialValue: mark)
-        _canModify = State(initialValue: isModifiable)
+        isMarkModifiable = isModifiable
         self.canNavigate = canNavigate
     }
     
@@ -31,7 +32,18 @@ struct UEView: View {
                         Spacer()
                         Text("6")
                     }
-                    RangeBarView(value: $value, canModify: $canModify)
+                    HStack{
+                        if isMarkModifiable{
+                            Image(systemName: canModify ? "lock.open" : "lock")
+                                .font(.system(size: 25))
+                                .padding(.trailing, canModify ? 0 : 5)
+                                .onTapGesture {
+                                    canModify.toggle()
+                                }
+                        }
+                        RangeBarView(value: $value, canModify: $canModify)
+                    }
+                    
                 }
 
                 if canNavigate{
