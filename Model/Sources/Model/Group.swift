@@ -14,7 +14,17 @@ public struct Group : Identifiable, Equatable, Averagable{
     // ==========================================
     
     public let id : UUID
-    public private(set) var name : String
+    
+    
+    private var name : String
+    public var Name : String{
+        get{name}
+        set{
+            guard !newValue.isEmpty else {return}
+            name = newValue
+        }
+    }
+    
     public private(set) var UEs : [UE] = []
     
     public var MarkableList: [Markable]{
@@ -44,7 +54,8 @@ public struct Group : Identifiable, Equatable, Averagable{
     //      Methods
     // ==========================================
     
-    public mutating func addUE(UEToAdd ue : UE) -> Bool {
+    public mutating func addUE(UEToAdd ue : UE?) -> Bool {
+        guard let ue = ue else{return false}
         guard(UEs.allSatisfy { $0.id != ue.id }) else {return false}
         
         UEs.append(ue)
@@ -53,6 +64,10 @@ public struct Group : Identifiable, Equatable, Averagable{
     
     public mutating func removeUE(UEToRemove ue : UE){
         UEs.removeAll{$0 == ue}
+    }
+    
+    public mutating func clearUEs(){
+        UEs = []
     }
     
     // ==========================================

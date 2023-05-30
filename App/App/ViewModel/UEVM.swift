@@ -38,6 +38,20 @@ extension UE{
             _ = self.addSubject(subjectToAdd: Subject(withId: sub.id, andName: sub.name, andMark: sub.mark, andCoef: sub.coef))
         }
     }
+}
+
+public class UEVM : ObservableObject{
     
+    @Published var original: UE
+    @Published var model: UE.Data
+    
+    public init(withUe ue: UE) {
+        self.original = ue
+        self.model = ue.data
+    }
+    
+    public convenience init() {
+        self.init(withUe: UE(withName: "New Suject", andMark: 10, andCoef: 1)!)
+    }
 }
 
