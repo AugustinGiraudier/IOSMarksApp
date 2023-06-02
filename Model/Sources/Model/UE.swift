@@ -24,13 +24,8 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         }
     }
     
-    private var mark : Float
     public var Mark : Float{
-        get {mark}
-        set{
-            guard newValue>=0 && newValue <= Subject.MAX_MARK else {return}
-            mark = newValue
-        }
+        get {Average}
     }
     
     private var coef : Float
@@ -52,11 +47,10 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
     //      Constructors
     // ==========================================
     
-    public init?(withId id : UUID, andName name : String, andMark mark : Float, andCoef coef : Float, andSubjects subjects : [Subject] = []){
+    public init?(withId id : UUID, andName name : String, andCoef coef : Float, andSubjects subjects : [Subject] = []){
         
         self.id = id
         self.name = name
-        self.mark = mark
         self.coef = coef
         
         for sub in subjects{
@@ -66,8 +60,8 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         }
     }
     
-    public init?(withName name : String, andMark mark : Float, andCoef coef : Float, andSubjects subjects : [Subject] = []){
-        self.init(withId: UUID(), andName: name, andMark: mark, andCoef: coef, andSubjects: subjects)
+    public init?(withName name : String, andCoef coef : Float, andSubjects subjects : [Subject] = []){
+        self.init(withId: UUID(), andName: name, andCoef: coef, andSubjects: subjects)
     }
     
     // ==========================================
