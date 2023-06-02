@@ -10,6 +10,10 @@ let package = Package(
         .library(
             name: "Model",
             targets: ["Model"]),
+        .library(
+            name: "Stub",
+            targets: ["Stub"]),
+        
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,6 +27,9 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "ModelTests",
+            dependencies: ["Model"]),
+        .target(
+            name: "Stub",
             dependencies: ["Model"]),
     ]
 )
