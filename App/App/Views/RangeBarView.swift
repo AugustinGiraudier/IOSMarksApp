@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Model
+import ViewModel
 
 struct RangeBarView: View {
     
@@ -19,7 +19,7 @@ struct RangeBarView: View {
     
     private var BarColor : Color {
         get{
-            return (CGFloat(value) >= CGFloat(Subject.MAX_MARK/2)) ? .green : .red
+            return (CGFloat(value) >= CGFloat(SubjectVM.MAX_MARK/2)) ? .green : .red
         }
     }
     
@@ -71,7 +71,7 @@ struct RangeBarView: View {
         guard canModify else {return}
         let dragLocation : CGFloat = value.location.x
         let ratio = dragLocation / rangeWidth
-        let max = CGFloat(Subject.MAX_MARK)
+        let max = CGFloat(SubjectVM.MAX_MARK)
         let valPixel : CGFloat = dragLocation > 0 ? dragLocation : 0.0
         let val : CGFloat = max * ratio
         
@@ -84,7 +84,7 @@ struct RangeBarView: View {
         if let width=width{
             rangeWidth = width
         }
-        self.pixelLen = min(CGFloat(value)*rangeWidth/CGFloat(Subject.MAX_MARK),rangeWidth)
+        self.pixelLen = min(CGFloat(value)*rangeWidth/CGFloat(SubjectVM.MAX_MARK),rangeWidth)
         self.barColor = BarColor
     }
     

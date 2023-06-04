@@ -8,6 +8,7 @@
 import Foundation
 import Model
 
+@available(iOS 13.0, *)
 public class GroupsVM : BaseVM{
     
     // ============================================== //

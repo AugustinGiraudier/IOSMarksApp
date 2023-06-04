@@ -8,11 +8,14 @@
 import Foundation
 import Model
 
+@available(iOS 13.0, *)
 public class SubjectVM: BaseVM, Identifiable, Equatable {
  
     // ============================================== //
     //          Member data
     // ============================================== //
+    
+    public static let MAX_MARK = Subject.MAX_MARK
     
     @Published
     var model: Subject{

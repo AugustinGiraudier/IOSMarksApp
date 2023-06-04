@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ViewModel
 import Stub
 
 struct HomeView: View {

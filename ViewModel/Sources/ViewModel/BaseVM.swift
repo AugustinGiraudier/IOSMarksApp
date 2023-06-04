@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOS 13.0, *)
 public class BaseVM: ObservableObject {
     private var updatedCallback: [(BaseVM) -> ()] = []
     

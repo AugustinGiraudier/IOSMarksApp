@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Model
+import ViewModel
 import Stub
 
 struct UEView: View {
