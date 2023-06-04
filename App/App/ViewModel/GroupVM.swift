@@ -8,44 +8,69 @@
 import Foundation
 import Model
 
-extension Group{
+public class GroupVM : BaseVM, Identifiable, Equatable{
     
-    struct Data : Identifiable{
-        public let id : UUID
-        public var name : String
-        public var someUEs: [UE.Data] = []
-    }
+    // ============================================== //
+    //          Member data
+    // ============================================== //
     
-    var data: Data {
-        Data(id: self.id,
-             name: self.Name,
-             someUEs: self.UEs.map { $0.data })
-    }
-    
-    mutating func update(from data: Data) {
-        guard self.id == data.id else {return}
-        
-        self.Name = data.name
-        
-        self.clearUEs()
-        for ue in data.someUEs{
-            _ = self.addUE(UEToAdd: UE(withId: ue.id ,andName: ue.name, andMark: ue.mark, andCoef: ue.coef))
+    @Published var model: Group{
+        didSet{
+            if name != model.Name {
+                name = model.Name
+            }
+            if uesEqualsModel() {
+                ues = model.UEs.map { UEVM(withUe: $0) }
+            }
+            ModelChanged()
         }
     }
-}
-
-public class GroupVM : ObservableObject{
     
+    public var id: UUID { model.id }
     
-    @Published var original: Group
-    @Published var model: Group.Data
+    @Published
+     public var name: String = "" {
+         didSet {
+             if model.Name != name {
+                 model.Name = name
+             }
+         }
+     }
+    
+    @Published
+    public var ues: [UEVM] = []
+    
+    // ============================================== //
+    //          Constructors
+    // ============================================== //
     
     public init(withGrp grp: Group) {
-        self.original = grp
-        self.model = grp.data
+        self.model = grp
+        super.init()
     }
     
-    public convenience init() {
-        self.init(withGrp: Group(withName: "New Group")!)
+    // ============================================== //
+    //          Methods
+    // ============================================== //
+    
+    private func uesEqualsModel() -> Bool {
+        return model.UEs.count == ues.count
+        && model.UEs.allSatisfy({ ue in
+            ues.contains { ueVM in
+                ueVM.model == ue
+            }
+        })
+    }
+    
+    public func addUe(ue : UE){
+        _=model.addUE(UEToAdd: ue)
+    }
+    
+    public func removeUe(ue : UE){
+        model.removeUE(UEToRemove: ue)
+    }
+    
+    public static func == (lhs: GroupVM, rhs: GroupVM) -> Bool {
+        lhs.id == rhs.id
     }
 }

@@ -8,50 +8,127 @@
 import Foundation
 import Model
 
-extension UE{
+public class UEVM : BaseVM, Identifiable, Equatable{
     
-    struct Data : Identifiable{
-        public let id : UUID
-        public var name : String
-        public var mark : Float
-        public var coef : Float
-        public var someSubjects: [Subject.Data] = []
-    }
+    // ============================================== //
+    //          Member data
+    // ============================================== //
     
-    var data: Data {
-        Data(id: self.id,
-             name: self.Name,
-             mark: self.Mark,
-             coef: self.Coef,
-             someSubjects: self.subjects.map { $0.data })
-    }
-    
-    mutating func update(from data: Data) {
-        guard self.id == data.id else {return}
-        
-        self.Name = data.name
-        self.Mark = data.mark
-        self.Coef = data.coef
-        
-        self.clearSubjects()
-        for sub in data.someSubjects{
-            _ = self.addSubject(subjectToAdd: Subject(withId: sub.id, andName: sub.name, andMark: sub.mark, andCoef: sub.coef))
+    @Published
+    var model: UE{
+        didSet{
+            if name != model.Name {
+                name = model.Name
+            }
+            if coef != model.Coef {
+                coef = model.Coef
+            }
+            if SubjectsEqualsModel() {
+                subjects = model.subjects.map { SubjectVM(withSubject: $0) }
+            }
+            ModelChanged()
         }
     }
-}
-
-public class UEVM : ObservableObject{
     
-    @Published var original: UE
-    @Published var model: UE.Data
+    @Published
+    public var copy: UEVM? = nil
+
+    public var id: UUID { model.id }
+    
+    @Published
+     public var name: String = "" {
+         didSet {
+             if model.Name != name {
+                 model.Name = name
+             }
+         }
+     }
+     
+     @Published
+     public var coef: Float = 0 {
+         didSet {
+             if model.Coef != coef {
+                 model.Coef = coef
+             }
+         }
+     }
+    
+    @Published
+    public var subjects: [SubjectVM] = []
+    {
+        didSet{
+            if !SubjectsEqualsModel(){
+                model.clearSubjects()
+                subjects.forEach{
+                    _=model.addSubject(subjectToAdd: $0.model)
+                }
+            }
+        }
+    }
+     
+    @Published
+    public private(set) var average: Float = 0
+    
+    @Published
+    public var isEditing: Bool = false
+
+    // ============================================== //
+    //          Constructors
+    // ============================================== //
     
     public init(withUe ue: UE) {
-        self.original = ue
-        self.model = ue.data
+        self.model = ue
+        super.init()
     }
     
-    public convenience init() {
-        self.init(withUe: UE(withName: "New Suject", andMark: 10, andCoef: 1)!)
+    // ============================================== //
+    //          Methods
+    // ============================================== //
+    
+    public func onEditing() {
+        self.copy = UEVM(withUe: model)
+        copy!.subjects.forEach { $0.onEditing() }
+        isEditing = true
     }
+    
+    public func onEdited(isCancelled cancelled: Bool = false) {
+        if !cancelled {
+            if let copy = self.copy {
+                update(copy: copy)
+            }
+        }
+        self.copy = nil
+        isEditing = false
+    }
+
+    private func update(copy: UEVM) {
+        if let copy = self.copy {
+            self.name = copy.name
+            self.coef = copy.coef
+            self.subjects = copy.subjects
+        }
+    }
+    
+    private func SubjectsEqualsModel() -> Bool {
+        return model.subjects.count == subjects.count
+        && model.subjects.allSatisfy({ sub in
+            subjects.contains { subVM in
+                subVM.model == sub
+            }
+        })
+    }
+    
+    public func addSubject(subject: Subject){
+        _=model.addSubject(subjectToAdd: subject)
+    }
+    
+    public func removeSubject(subject: Subject){
+        model.removeSubject(subjectToRemove: subject)
+    }
+    
+    public static func == (lhs: UEVM, rhs: UEVM) -> Bool {
+        lhs.id == rhs.id
+    }
+    
 }
 
