@@ -27,9 +27,6 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
                 average = model.Average
             }
             ModelChanged()
-            print("3")
-            
-            print(Unmanaged.passUnretained(self).toOpaque())
         }
     }
     
@@ -45,7 +42,11 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
      }
     
     @Published
-    public var ues: [UEVM] = []
+    public var ues: [UEVM] = []{
+        didSet{
+            setUesListeners()
+        }
+    }
     
     @Published
     public private(set) var average: Float = 0
@@ -88,8 +89,6 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     public func updateUes(){
         model.UEs = self.ues.map{ $0.model }
         self.average = model.Average
-        ModelChanged()
-        print("2")
     }
     
     public func setUesListeners(){
@@ -98,6 +97,5 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
                 self.updateUes()
            })
         }
-        print("1")
     }
 }

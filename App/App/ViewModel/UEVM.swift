@@ -139,7 +139,6 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     public func updateSubjects(){
         model.subjects = subjects.map { $0.model }
         average = model.Average
-        ModelChanged()
     }
     
     public static func == (lhs: UEVM, rhs: UEVM) -> Bool {

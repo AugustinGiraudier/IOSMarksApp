@@ -34,7 +34,6 @@ public class GroupsVM : BaseVM{
         model.forEach{mod in
             if let grpvm = groups.first(where: {grp in grp.id == mod.id}){
                 grpvm.ues = uesVM.getUEsVM(ues: mod.UEs)
-                grpvm.setUesListeners()
             }
         }
     }
