@@ -8,7 +8,7 @@
 import Foundation
 import Model
 
-public class UEVM : BaseVM, Equatable{
+public class UEVM : BaseVM, Identifiable, Equatable{
     
     // ============================================== //
     //          Member data
@@ -17,6 +17,15 @@ public class UEVM : BaseVM, Equatable{
     @Published
     var model: UE{
         didSet{
+            if name != model.Name {
+                name = model.Name
+            }
+            if coef != model.Coef {
+                coef = model.Coef
+            }
+            if SubjectsEqualsModel() {
+                subjects = model.subjects.map { SubjectVM(withSubject: $0) }
+            }
             ModelChanged()
         }
     }
@@ -105,8 +114,8 @@ public class UEVM : BaseVM, Equatable{
     
     private func SubjectsEqualsModel() -> Bool {
         return model.subjects.count == subjects.count
-        && self.model.subjects.allSatisfy({ sub in
-            self.subjects.contains { subVM in
+        && model.subjects.allSatisfy({ sub in
+            subjects.contains { subVM in
                 subVM.model == sub
             }
         })

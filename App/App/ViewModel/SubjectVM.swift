@@ -8,7 +8,7 @@
 import Foundation
 import Model
 
-public class SubjectVM: BaseVM, Identifiable {
+public class SubjectVM: BaseVM, Identifiable, Equatable {
  
     // ============================================== //
     //          Member data
@@ -17,7 +17,13 @@ public class SubjectVM: BaseVM, Identifiable {
     @Published
     var model: Subject{
         didSet{
-            if(mark != model.Mark){
+            if name != model.Name {
+                name = model.Name
+            }
+            if coef != model.Coef {
+                coef = model.Coef
+            }
+            if mark != model.Mark {
                 mark = model.Mark
             }
             ModelChanged()
@@ -94,6 +100,10 @@ public class SubjectVM: BaseVM, Identifiable {
             coef = copy.coef
             mark = copy.mark
         }
+    }
+    
+    public static func == (lhs: SubjectVM, rhs: SubjectVM) -> Bool {
+        lhs.id == rhs.id
     }
 
 }

@@ -15,7 +15,6 @@ public struct Group : Identifiable, Equatable, Averagable{
     
     public let id : UUID
     
-    
     private var name : String
     public var Name : String{
         get{name}
