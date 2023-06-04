@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Stub
 
 struct BlocksView: View {
+    
+    @ObservedObject
+    public var blocksVM : GroupsVM
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -40,10 +45,9 @@ struct BlocksView: View {
             Divider()
                 .padding(.bottom, 15)
             
-            BlockView()
-            BlockView()
-            
-           
+            ForEach(blocksVM.groups){ group in
+                BlockView(blockVM: group)
+            }
             
         }
         .padding(.horizontal,25)
@@ -55,6 +59,6 @@ struct BlocksView: View {
 
 struct BlocksView_Previews: PreviewProvider {
     static var previews: some View {
-        BlocksView()
+        BlocksView(blocksVM: GroupsVM(withGroups: Stub().getAllGroups()))
     }
 }

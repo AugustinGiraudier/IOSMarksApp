@@ -31,6 +31,7 @@ public class UEsVM : BaseVM{
     public init(withUes ues : [UE]) {
         self.model = ues
         super.init()
+        defer{self.model = ues}
     }
     
     // ============================================== //

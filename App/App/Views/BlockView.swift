@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import Stub
 
 struct BlockView: View {
+    
+    @ObservedObject
+    public var blockVM : GroupVM
+    
     var body: some View {
         HStack{
             Image(systemName: "doc.on.doc.fill")
-            Text("Bloc name")
+            Text(blockVM.name)
                 .bold()
             Spacer()
-            Text("12.2")
+            Text(String(format: "%.2f", blockVM.average))
             Image(systemName: "graduationcap.circle.fill")
         }
         .padding(.vertical,1)
@@ -23,6 +28,6 @@ struct BlockView: View {
 
 struct BlockView_Previews: PreviewProvider {
     static var previews: some View {
-        BlockView()
+        BlockView(blockVM: GroupVM(withGrp: Stub().getOneGroup()))
     }
 }

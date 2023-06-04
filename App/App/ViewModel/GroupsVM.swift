@@ -23,12 +23,17 @@ public class GroupsVM : BaseVM{
     //          Constructors
     // ============================================== //
     
-    public init(withGroups groups : [Group], uesVM : UEsVM) {
+    public init(withGroups groups : [Group]) {
         self.model = groups
-        // get uesVM references :
+        self.groups = model.map {GroupVM(withGrp: $0) }
         super.init()
-        groups.forEach{
-            var grpvm = GroupVM(withGrp: $0)
+    }
+    
+    public func updateWithUesVM(uesVM : UEsVM){
+        self.groups = []
+        // get uesVM references :
+        model.forEach{
+            let grpvm = GroupVM(withGrp: $0)
             grpvm.ues = uesVM.getUEsVM(ues: $0.UEs)
             self.groups.append(grpvm)
         }

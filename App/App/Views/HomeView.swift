@@ -6,18 +6,25 @@
 //
 
 import SwiftUI
+import Stub
 
 struct HomeView: View {
+    
+    @ObservedObject
+    public var uesVM : UEsVM
+    
+    @ObservedObject
+    public var groupsVM : GroupsVM
+    
     var body: some View {
         
         NavigationStack{
             ScrollView{
                 VStack{
                     
-                    BlocksView()
+                    BlocksView(blocksVM: groupsVM)
                         .padding(.horizontal, 10)
                         .padding(.top, 20)
-                    
                     
                     UEsView()
                         .padding(.horizontal, 10)
@@ -31,7 +38,11 @@ struct HomeView: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        HomeView()
+        HomeView(
+            uesVM: UEsVM(withUes: Stub().getAllUes()),
+            groupsVM: GroupsVM(withGroups: Stub().getAllGroups())
+        )
     }
 }

@@ -26,6 +26,9 @@ public class UEVM : BaseVM, Identifiable, Equatable{
             if SubjectsEqualsModel() {
                 subjects = model.subjects.map { SubjectVM(withSubject: $0) }
             }
+            if average != model.Average{
+                average = model.Average
+            }
             ModelChanged()
         }
     }
@@ -79,6 +82,7 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     public init(withUe ue: UE) {
         self.model = ue
         super.init()
+        defer{self.model = ue}
     }
     
     // ============================================== //

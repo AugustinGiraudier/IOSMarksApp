@@ -75,6 +75,7 @@ public class SubjectVM: BaseVM, Identifiable, Equatable {
     public init(withSubject subject: Subject) {
         self.model = subject
         super.init()
+        defer{self.model = subject}
     }
     
     // ============================================== //

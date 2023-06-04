@@ -14,13 +14,17 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     //          Member data
     // ============================================== //
     
-    @Published var model: Group{
+    @Published
+    var model: Group{
         didSet{
             if name != model.Name {
                 name = model.Name
             }
             if uesEqualsModel() {
                 ues = model.UEs.map { UEVM(withUe: $0) }
+            }
+            if average != model.Average {
+                average = model.Average
             }
             ModelChanged()
         }
@@ -29,7 +33,7 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     public var id: UUID { model.id }
     
     @Published
-     public var name: String = "" {
+     public var name: String = "No Name" {
          didSet {
              if model.Name != name {
                  model.Name = name
@@ -40,6 +44,9 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     @Published
     public var ues: [UEVM] = []
     
+    @Published
+    public private(set) var average: Float = 0
+    
     // ============================================== //
     //          Constructors
     // ============================================== //
@@ -47,6 +54,7 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     public init(withGrp grp: Group) {
         self.model = grp
         super.init()
+        defer{model = grp}
     }
     
     // ============================================== //
