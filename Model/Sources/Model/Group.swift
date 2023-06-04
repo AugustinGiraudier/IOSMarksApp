@@ -24,7 +24,7 @@ public struct Group : Identifiable, Equatable, Averagable{
         }
     }
     
-    public private(set) var UEs : [UE] = []
+    public var UEs : [UE] = []
     
     public var MarkableList: [Markable]{
         get{UEs}

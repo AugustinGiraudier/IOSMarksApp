@@ -15,16 +15,14 @@ struct AppApp: App {
     public var uesVM : UEsVM = UEsVM(withUes: Stub.getAllUes())
     
     @StateObject
-    public var groupsVM : GroupsVM
-    
-    init(){
-        _groupsVM = StateObject(wrappedValue: GroupsVM(withGroups: Stub.getAllGroups()))
-        groupsVM.updateWithUesVM(uesVM: uesVM)
-    }
+    public var groupsVM : GroupsVM = GroupsVM(withGroups: Stub.getAllGroups())
     
     var body: some Scene {
         WindowGroup {
             HomeView(uesVM: uesVM, groupsVM: groupsVM)
+            .onAppear(){
+                groupsVM.updateWithUesVM(uesVM: uesVM)
+            }
         }
     }
 }

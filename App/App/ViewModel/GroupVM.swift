@@ -27,6 +27,9 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
                 average = model.Average
             }
             ModelChanged()
+            print("3")
+            
+            print(Unmanaged.passUnretained(self).toOpaque())
         }
     }
     
@@ -80,5 +83,21 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     
     public static func == (lhs: GroupVM, rhs: GroupVM) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    public func updateUes(){
+        model.UEs = self.ues.map{ $0.model }
+        self.average = model.Average
+        ModelChanged()
+        print("2")
+    }
+    
+    public func setUesListeners(){
+        ues.forEach{ue in
+            ue.addUpdatedCallback(callback:  {_ in
+                self.updateUes()
+           })
+        }
+        print("1")
     }
 }

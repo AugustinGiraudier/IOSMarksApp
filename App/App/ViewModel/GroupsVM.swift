@@ -25,17 +25,17 @@ public class GroupsVM : BaseVM{
     
     public init(withGroups groups : [Group]) {
         self.model = groups
-        self.groups = model.map {GroupVM(withGrp: $0) }
+        self.groups = model.map { GroupVM(withGrp: $0) }
         super.init()
     }
     
     public func updateWithUesVM(uesVM : UEsVM){
-        self.groups = []
         // get uesVM references :
-        model.forEach{
-            let grpvm = GroupVM(withGrp: $0)
-            grpvm.ues = uesVM.getUEsVM(ues: $0.UEs)
-            self.groups.append(grpvm)
+        model.forEach{mod in
+            if let grpvm = groups.first(where: {grp in grp.id == mod.id}){
+                grpvm.ues = uesVM.getUEsVM(ues: mod.UEs)
+                grpvm.setUesListeners()
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ import Model
 
 public struct Stub{
     
-    private static let blocks : [Group] = [
+    private static let group : Group =
         Group(withName: "Total", andUEs:[
             UE(withName: "UE 1 : Génie Logiciel", andCoef: 6, andSubjects: [
                 Subject(withName: "Processus de développement", andMark: 10, andCoef: 4),
@@ -54,35 +54,24 @@ public struct Stub{
             ])!,
 
             UE(withName: "UE 7 : Stage ", andCoef: 15, andSubjects: [
-                Subject(withName: "Stage", andMark: 10, andCoef: 1)
-            ])!  
-        ])!,
-        
-        Group(withName: "Total", andUEs:[
-            UE(withName: "UE 6 : Projet", andCoef: 9, andSubjects: [
-                Subject(withName: "Projet", andMark: 10, andCoef: 1)
-            ])!,
-
-            UE(withName: "UE 7 : Stage ", andCoef: 15, andSubjects: [
-                Subject(withName: "Stage", andMark: 10, andCoef: 1)
-            ])!  
+                Subject(withName: "Stage", andMark: 15, andCoef: 1)
+            ])!
         ])!
-    ]
     
     public static func getAllUes() -> [UE]{
-        return Stub.blocks[0].UEs
+        return group.UEs
     }
     
     public static func getOneUe() -> UE{
-        return blocks[0].UEs[0]
+        return group.UEs[0]
     }
     
-    public static func getAllGroups() -> [Group]{
-        return blocks
+    public static func getAllGroups() -> [Group] {
+        return [group, Group(withName: "Projet/Stage", andUEs: [group.UEs[5],group.UEs[6]])!]
     }
     
     public static func getOneGroup() -> Group{
-        return blocks[0]
+        return group
     }
     
     public static func getManySubjects() -> [Subject]{
