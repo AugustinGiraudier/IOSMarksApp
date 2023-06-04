@@ -26,7 +26,7 @@ struct HomeView: View {
                         .padding(.horizontal, 10)
                         .padding(.top, 20)
                     
-                    UEsView()
+                    UEsView(uesVM: uesVM)
                         .padding(.horizontal, 10)
                         .padding(.top, 20)
                         

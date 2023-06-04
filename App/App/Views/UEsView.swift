@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Stub
 
 struct UEsView: View {
+    
+    @ObservedObject
+    public var uesVM : UEsVM
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -32,10 +37,9 @@ struct UEsView: View {
             Divider()
                 .padding(.bottom, 5)
             
-            UEView(isModifiable: false, mark: 6.27)
-            UEView(isModifiable: false, mark: 12.4)
-            
-           
+            ForEach(uesVM.ues){ue in
+                UEView(ueVM: ue, canNavigate: true)
+            }
             
         }
         .padding(.horizontal,25)
@@ -47,6 +51,6 @@ struct UEsView: View {
 
 struct UEsView_Previews: PreviewProvider {
     static var previews: some View {
-        UEsView()
+        UEsView(uesVM: UEsVM(withUes: Stub.getAllUes()))
     }
 }

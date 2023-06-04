@@ -20,7 +20,7 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
             if name != model.Name {
                 name = model.Name
             }
-            if uesEqualsModel() {
+            if !uesEqualsModel() {
                 ues = model.UEs.map { UEVM(withUe: $0) }
             }
             if average != model.Average {

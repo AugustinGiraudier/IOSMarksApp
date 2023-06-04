@@ -37,7 +37,7 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         }
     }
     
-    public private(set) var subjects : [Subject] = []
+    public var subjects : [Subject] = []
     
     public var MarkableList: [Markable]{
         get{subjects}

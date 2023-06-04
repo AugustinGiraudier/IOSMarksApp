@@ -6,19 +6,25 @@
 //
 
 import SwiftUI
+import Stub
+
 
 struct UEPage: View {
+    
+    @ObservedObject
+    public var ueVM : UEVM
+    
     var body: some View {
         NavigationStack{
             ScrollView{
                 VStack(alignment: .leading){
                     
                     VStack{
-                        UEView(canNavigate: false)
+                        UEView(ueVM: ueVM, canNavigate: false)
                         HStack{
                             Image(systemName:"xmark.circle.fill")
                             Text("Coefficient :")
-                            Text("6")
+                            Text(String(format: "%.1f", ueVM.coef))
                             Spacer()
                         }
                         .padding(.top, 10)
@@ -38,15 +44,13 @@ struct UEPage: View {
                     }
                     .padding(.top, 20)
                     
-                    UEView(isModifiable: true, canNavigate: false)
-                    UEView(isModifiable: true, canNavigate: false)
-                    UEView(isModifiable: true, canNavigate: false)
-                    UEView(isModifiable: true, canNavigate: false)
-                    UEView(isModifiable: true, canNavigate: false)
+                    ForEach(ueVM.subjects){subject in
+                        SubjectView(subVM: subject)
+                    }
                     
                     Spacer()
                 }
-                .navigationTitle("UE 1 Génie Logiciel")
+                .navigationTitle(ueVM.name)
                 .padding(.horizontal,10)
             }
         }
@@ -55,6 +59,6 @@ struct UEPage: View {
 
 struct UEPage_Previews: PreviewProvider {
     static var previews: some View {
-        UEPage()
+        UEPage(ueVM: UEVM(withUe: Stub.getOneUe()))
     }
 }

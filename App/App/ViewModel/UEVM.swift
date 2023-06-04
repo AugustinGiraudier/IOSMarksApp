@@ -23,8 +23,9 @@ public class UEVM : BaseVM, Identifiable, Equatable{
             if coef != model.Coef {
                 coef = model.Coef
             }
-            if SubjectsEqualsModel() {
+            if !SubjectsEqualsModel() {
                 subjects = model.subjects.map { SubjectVM(withSubject: $0) }
+                setSubjectsListeners()
             }
             if average != model.Average{
                 average = model.Average
@@ -61,16 +62,13 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     {
         didSet{
             if !SubjectsEqualsModel(){
-                model.clearSubjects()
-                subjects.forEach{
-                    _=model.addSubject(subjectToAdd: $0.model)
-                }
+                updateSubjects()
             }
         }
     }
      
     @Published
-    public private(set) var average: Float = 0
+    public var average: Float = 0
     
     @Published
     public var isEditing: Bool = false
@@ -128,6 +126,19 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     
     public func removeSubject(subject: Subject){
         model.removeSubject(subjectToRemove: subject)
+    }
+    
+    private func setSubjectsListeners(){
+        subjects.forEach{sub in
+            sub.addUpdatedCallback(callback:  {_ in
+                self.updateSubjects()
+           })
+        }
+    }
+    
+    public func updateSubjects(){
+        model.subjects = subjects.map { $0.model }
+        average = model.Average
     }
     
     public static func == (lhs: UEVM, rhs: UEVM) -> Bool {

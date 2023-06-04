@@ -10,7 +10,7 @@ import Model
 
 struct RangeBarView: View {
     
-    @Binding var value : CGFloat
+    @Binding var value : Float
     @Binding var canModify : Bool
     
     @State private var pixelLen : CGFloat = 5.0
@@ -19,7 +19,7 @@ struct RangeBarView: View {
     
     private var BarColor : Color {
         get{
-            return (value >= CGFloat(Subject.MAX_MARK/2)) ? .green : .red
+            return (CGFloat(value) >= CGFloat(Subject.MAX_MARK/2)) ? .green : .red
         }
     }
     
@@ -57,6 +57,9 @@ struct RangeBarView: View {
             .onChange(of: geometry.size.width) { _ in
                 updateRatio(width:geometry.size.width)
             }
+            .onChange(of: value){_ in
+                updateRatio(width:geometry.size.width)
+            }
             .onAppear(perform:{
                 updateRatio(width:geometry.size.width)
             })
@@ -73,7 +76,7 @@ struct RangeBarView: View {
         let val : CGFloat = max * ratio
         
         self.pixelLen = min(valPixel,rangeWidth)
-        self.value = min(max, val > 0 ? val : 0.0)
+        self.value = Float(min(max, val > 0 ? val : 0.0))
         self.barColor = BarColor
     }
     
@@ -81,7 +84,7 @@ struct RangeBarView: View {
         if let width=width{
             rangeWidth = width
         }
-        self.pixelLen = min(value*rangeWidth/CGFloat(Subject.MAX_MARK),rangeWidth)
+        self.pixelLen = min(CGFloat(value)*rangeWidth/CGFloat(Subject.MAX_MARK),rangeWidth)
         self.barColor = BarColor
     }
     
