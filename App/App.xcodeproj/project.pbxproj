@@ -23,6 +23,7 @@
 		EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */; };
 		EC0159C02A21456300D6C3F6 /* SubjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */; };
 		EC0159C22A21498300D6C3F6 /* UEVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159C12A21498300D6C3F6 /* UEVM.swift */; };
+		EC8851602A2C815B00471A76 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88515F2A2C815B00471A76 /* BaseVM.swift */; };
 		EC88B1CB2A25EDAD00E2651D /* GroupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88B1CA2A25EDAD00E2651D /* GroupVM.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
 		EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectVM.swift; sourceTree = "<group>"; };
 		EC0159C12A21498300D6C3F6 /* UEVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEVM.swift; sourceTree = "<group>"; };
+		EC88515F2A2C815B00471A76 /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
 		EC88B1CA2A25EDAD00E2651D /* GroupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 				EC0159BF2A21456300D6C3F6 /* SubjectVM.swift */,
 				EC0159C12A21498300D6C3F6 /* UEVM.swift */,
 				EC88B1CA2A25EDAD00E2651D /* GroupVM.swift */,
+				EC88515F2A2C815B00471A76 /* BaseVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC88B1CB2A25EDAD00E2651D /* GroupVM.swift in Sources */,
+				EC8851602A2C815B00471A76 /* BaseVM.swift in Sources */,
 				EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */,
 				EC0159B52A20B7BA00D6C3F6 /* BlockView.swift in Sources */,
 				EC0159C22A21498300D6C3F6 /* UEVM.swift in Sources */,

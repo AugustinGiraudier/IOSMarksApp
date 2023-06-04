@@ -8,45 +8,94 @@
 import Foundation
 import Model
 
-extension Subject{
-    
-    struct Data : Identifiable{
-        public let id : UUID
-        public var name : String
-        public var mark : Float
-        public var coef : Float
-    }
-    
-    var data: Data {
-        Data(id: self.id, name: Name, mark: Mark, coef: Coef)
-    }
-    
-    mutating func update(from data: Data) {
-        guard data.id == self.id else {
-            return
-        }
-        
-        self.Name = data.name
-        self.Mark = data.mark
-        self.Coef = data.coef
-    }
-}
-
-class SubjectVM: ObservableObject {
+class SubjectVM: BaseVM, Identifiable {
  
-    var original: Subject
+    // ============================================== //
+    //          Members data
+    // ============================================== //
     
-    @Published var model: Subject.Data
-    @Published var canModify : Bool = false
+    @Published
+    var model: Subject{
+        didSet{
+            if(mark != model.Mark){
+                mark = model.Mark
+            }
+            ModelChanged()
+        }
+    }
+    
+    @Published
+    public var copy: SubjectVM? = nil
+
+    public var id: UUID { model.id }
+    
+    @Published
+     public var name: String = "" {
+         didSet {
+             if model.Name != name {
+                 model.Name = name
+             }
+         }
+     }
+     
+     @Published
+     public var coef: Float = 0 {
+         didSet {
+             if model.Coef != coef {
+                 model.Coef = coef
+             }
+         }
+     }
+     
+     @Published
+     public var mark: Float = 0 {
+         didSet {
+             if model.Mark != mark {
+                 model.Mark = mark
+             }
+         }
+     }
+
+    @Published
+    public var isEditing: Bool = false
+    
+    // ============================================== //
+    //          Constructors
+    // ============================================== //
     
     public init(withSubject subject: Subject) {
-        self.original = subject
-        self.model = subject.data
+        self.model = subject
+        super.init()
     }
     
-    public convenience init() {
+    public override convenience init() {
         self.init(withSubject: Subject(withName: "New Suject", andMark: 10, andCoef: 1)!)
     }
     
+    // ============================================== //
+    //          Methods
+    // ============================================== //
+    
+    public func onEditing() {
+        self.copy = SubjectVM(withSubject: model)
+        isEditing = true
+    }
+    
+    public func onEdited(isCancelled cancelled: Bool = false) {
+        if !cancelled {
+            update()
+        }
+        self.copy = nil
+        isEditing = false
+    }
+    
+    private func update() {
+        if let copy = self.copy {
+            name = copy.name
+            coef = copy.coef
+            mark = copy.mark
+        }
+    }
+
 }
 
