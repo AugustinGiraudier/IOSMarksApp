@@ -87,11 +87,8 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     
     public func onEditing() {
         self.copy = UEVM(withUe: model)
-        for courseVM in copy!.subjects {
-            courseVM.onEditing()
-        }
+        copy!.subjects.forEach { $0.onEditing() }
         isEditing = true
-        
     }
     
     public func onEdited(isCancelled cancelled: Bool = false) {
@@ -104,7 +101,7 @@ public class UEVM : BaseVM, Identifiable, Equatable{
         isEditing = false
     }
 
-    func update(copy: UEVM) {
+    private func update(copy: UEVM) {
         if let copy = self.copy {
             self.name = copy.name
             self.coef = copy.coef
@@ -119,6 +116,14 @@ public class UEVM : BaseVM, Identifiable, Equatable{
                 subVM.model == sub
             }
         })
+    }
+    
+    public func addSubject(subject: Subject){
+        _=model.addSubject(subjectToAdd: subject)
+    }
+    
+    public func removeSubject(subject: Subject){
+        model.removeSubject(subjectToRemove: subject)
     }
     
     public static func == (lhs: UEVM, rhs: UEVM) -> Bool {

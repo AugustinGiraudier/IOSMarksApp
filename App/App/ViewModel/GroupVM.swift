@@ -26,9 +26,6 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
         }
     }
     
-    @Published
-    var copy : GroupVM? = nil
-    
     public var id: UUID { model.id }
     
     @Published
@@ -63,6 +60,14 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
                 ueVM.model == ue
             }
         })
+    }
+    
+    public func addUe(ue : UE){
+        _=model.addUE(UEToAdd: ue)
+    }
+    
+    public func removeUe(ue : UE){
+        model.removeUE(UEToRemove: ue)
     }
     
     public static func == (lhs: GroupVM, rhs: GroupVM) -> Bool {
