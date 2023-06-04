@@ -8,10 +8,10 @@
 import Foundation
 import Model
 
-class SubjectVM: BaseVM, Identifiable {
+public class SubjectVM: BaseVM, Identifiable {
  
     // ============================================== //
-    //          Members data
+    //          Member data
     // ============================================== //
     
     @Published
@@ -59,6 +59,9 @@ class SubjectVM: BaseVM, Identifiable {
     @Published
     public var isEditing: Bool = false
     
+    @Published
+    public var canModifyMark : Bool = false
+    
     // ============================================== //
     //          Constructors
     // ============================================== //
@@ -66,10 +69,6 @@ class SubjectVM: BaseVM, Identifiable {
     public init(withSubject subject: Subject) {
         self.model = subject
         super.init()
-    }
-    
-    public override convenience init() {
-        self.init(withSubject: Subject(withName: "New Suject", andMark: 10, andCoef: 1)!)
     }
     
     // ============================================== //
