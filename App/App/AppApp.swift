@@ -12,14 +12,13 @@ import Stub
 struct AppApp: App {
     
     @StateObject
-    public var uesVM : UEsVM = UEsVM(withUes: Stub().getAllUes())
+    public var uesVM : UEsVM = UEsVM(withUes: Stub.getAllUes())
     
     @StateObject
-    public var groupsVM : GroupsVM //= GroupsVM(withGroups: Stub().getAllGroups())
+    public var groupsVM : GroupsVM
     
     init(){
-        let stub = Stub()
-        _groupsVM = StateObject(wrappedValue: GroupsVM(withGroups: stub.getAllGroups()))
+        _groupsVM = StateObject(wrappedValue: GroupsVM(withGroups: Stub.getAllGroups()))
         groupsVM.updateWithUesVM(uesVM: uesVM)
     }
     

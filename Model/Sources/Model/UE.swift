@@ -47,7 +47,7 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
     //      Constructors
     // ==========================================
     
-    public init?(withId id : UUID, andName name : String, andCoef coef : Float, andSubjects subjects : [Subject] = []){
+    public init?(withId id : UUID, andName name : String, andCoef coef : Float, andSubjects subjects : [Subject?] = []){
         
         self.id = id
         self.name = name
@@ -60,7 +60,7 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         }
     }
     
-    public init?(withName name : String, andCoef coef : Float, andSubjects subjects : [Subject] = []){
+    public init?(withName name : String, andCoef coef : Float, andSubjects subjects : [Subject?] = []){
         self.init(withId: UUID(), andName: name, andCoef: coef, andSubjects: subjects)
     }
     
