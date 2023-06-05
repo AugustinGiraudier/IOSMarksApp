@@ -29,7 +29,7 @@ struct UEView: View {
                     HStack{
                         Text(ueVM.name)
                         Spacer()
-                        Text(String(format: "%.1f", ueVM.coef))
+                        Text("\(ueVM.coef)")
                     }
                     HStack{
                         RangeBarView(value: $ueVM.average, canModify: .constant(false))

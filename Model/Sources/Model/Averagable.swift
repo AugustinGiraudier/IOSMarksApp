@@ -23,8 +23,8 @@ extension Averagable{
             var sum : Float = 0
             var sumCoef : Float = 0
             for markable in MarkableList{
-                sum += markable.Mark * markable.Coef
-                sumCoef += markable.Coef
+                sum += markable.Mark * Float(markable.Coef)
+                sumCoef += Float(markable.Coef)
             }
             return sumCoef > 0 ? sum/sumCoef : 0
         }

@@ -50,7 +50,7 @@ public class UEVM : BaseVM, Identifiable, Equatable{
      }
      
      @Published
-     public var coef: Float = 0 {
+     public var coef: Int = 0 {
          didSet {
              if model.Coef != coef {
                  model.Coef = coef
@@ -109,6 +109,7 @@ public class UEVM : BaseVM, Identifiable, Equatable{
             self.name = copy.name
             self.coef = copy.coef
             self.subjects = copy.subjects
+            setSubjectsListeners()
         }
     }
     

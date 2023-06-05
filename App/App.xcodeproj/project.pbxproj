@@ -20,6 +20,7 @@
 		EC0159B92A20D23000D6C3F6 /* UEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159B82A20D23000D6C3F6 /* UEView.swift */; };
 		EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */; };
 		EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */; };
+		EC8292292A2DF1F900C768BD /* EditableUe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8292282A2DF1F900C768BD /* EditableUe.swift */; };
 		EC8851662A2CD90800471A76 /* Stub in Frameworks */ = {isa = PBXBuildFile; productRef = EC8851652A2CD90800471A76 /* Stub */; };
 		EC88516A2A2CF1EE00471A76 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8851692A2CF1EE00471A76 /* SubjectView.swift */; };
 		EC88516E2A2D2E4D00471A76 /* ViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = EC88516D2A2D2E4D00471A76 /* ViewModel */; };
@@ -59,6 +60,7 @@
 		EC0159B82A20D23000D6C3F6 /* UEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEView.swift; sourceTree = "<group>"; };
 		EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEPage.swift; sourceTree = "<group>"; };
 		EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeBarView.swift; sourceTree = "<group>"; };
+		EC8292282A2DF1F900C768BD /* EditableUe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableUe.swift; sourceTree = "<group>"; };
 		EC8851692A2CF1EE00471A76 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 				EC8851692A2CF1EE00471A76 /* SubjectView.swift */,
 				EC0159BA2A20F3B300D6C3F6 /* UEPage.swift */,
 				EC0159BC2A21341500D6C3F6 /* RangeBarView.swift */,
+				EC8292282A2DF1F900C768BD /* EditableUe.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				EC0159BD2A21341500D6C3F6 /* RangeBarView.swift in Sources */,
 				EC88516A2A2CF1EE00471A76 /* SubjectView.swift in Sources */,
 				EC0159B32A20B2BC00D6C3F6 /* BlocksView.swift in Sources */,
+				EC8292292A2DF1F900C768BD /* EditableUe.swift in Sources */,
 				EC0159B12A20B12A00D6C3F6 /* HomeView.swift in Sources */,
 				EC0159BB2A20F3B300D6C3F6 /* UEPage.swift in Sources */,
 				EC0159832A20B01E00D6C3F6 /* AppApp.swift in Sources */,

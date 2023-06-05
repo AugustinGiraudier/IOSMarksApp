@@ -9,7 +9,7 @@ import Foundation
 
 public protocol Markable{
     
-    var Coef : Float {get}
+    var Coef : Int {get}
     var Mark : Float {get}
     
 }

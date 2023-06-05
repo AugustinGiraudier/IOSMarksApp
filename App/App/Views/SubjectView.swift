@@ -27,7 +27,7 @@ struct SubjectView: View {
                     HStack{
                         Text(subjectVM.name)
                         Spacer()
-                        Text(String(format: "%.1f", subjectVM.coef))
+                        Text("\(subjectVM.coef)")
                     }
                     HStack{
                         Image(systemName: canModify ? "lock.open" : "lock")

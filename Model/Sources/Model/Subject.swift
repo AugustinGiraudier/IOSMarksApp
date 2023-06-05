@@ -40,8 +40,8 @@ public struct Subject : Identifiable, Equatable, Markable{
         }
     }
     
-    private var coef : Float
-    public var Coef : Float{
+    private var coef : Int
+    public var Coef : Int{
         get {coef}
         set{
             guard newValue>=0 else {return}
@@ -53,7 +53,7 @@ public struct Subject : Identifiable, Equatable, Markable{
     //      Constructors
     // ==========================================
     
-    public init?(withId id:UUID, andName name:String, andMark mark:Float, andCoef coef:Float){
+    public init?(withId id:UUID, andName name:String, andMark mark:Float, andCoef coef:Int){
         guard !name.isEmpty && mark >= 0 && mark <= Subject.MAX_MARK && coef > 0 else { return nil }
         
         self.id = id
@@ -63,7 +63,7 @@ public struct Subject : Identifiable, Equatable, Markable{
         
     }
     
-    public init?(withName name:String, andMark mark:Float, andCoef coef:Float){
+    public init?(withName name:String, andMark mark:Float, andCoef coef:Int){
         self.init(withId: UUID(), andName: name, andMark: mark, andCoef: coef)
     }
     

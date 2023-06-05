@@ -48,7 +48,7 @@ public class SubjectVM: BaseVM, Identifiable, Equatable {
      }
      
      @Published
-     public var coef: Float = 0 {
+     public var coef: Int = 0 {
          didSet {
              if model.Coef != coef {
                  model.Coef = coef

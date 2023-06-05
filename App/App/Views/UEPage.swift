@@ -52,6 +52,32 @@ struct UEPage: View {
                     Spacer()
                 }
                 .navigationTitle(ueVM.name)
+                .toolbar {
+                    Button(action: {
+                        ueVM.onEditing()
+                    }) {
+                        Text("Edit")
+                    }
+                }
+                .sheet(isPresented: $ueVM.isEditing) {
+                    NavigationStack {
+                        
+                        EditableUe(ueVM: $ueVM.copy)
+                            .padding()
+                            .toolbar {
+                                ToolbarItem(placement: .confirmationAction) {
+                                    Button("Done") {
+                                        ueVM.onEdited()
+                                    }
+                                }
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button("Cancel") {
+                                        ueVM.onEdited(isCancelled: true)
+                                    }
+                                }
+                            }
+                    }
+                }
                 .padding(.horizontal,10)
             }
         }
