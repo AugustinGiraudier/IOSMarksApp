@@ -76,8 +76,8 @@ public struct UE : Identifiable, Equatable, Markable, Averagable{
         return true
     }
     
-    public mutating func removeSubject(subjectToRemove sub : Subject){
-        subjects.removeAll{$0 == sub}
+    public mutating func removeSubject(id : UUID){
+        subjects.removeAll{$0.id == id}
     }
     
     public mutating func clearSubjects(){

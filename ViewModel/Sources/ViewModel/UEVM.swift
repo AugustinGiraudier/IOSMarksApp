@@ -126,8 +126,12 @@ public class UEVM : BaseVM, Identifiable, Equatable{
         _=model.addSubject(subjectToAdd: subject)
     }
     
-    public func removeSubject(subject: Subject){
-        model.removeSubject(subjectToRemove: subject)
+    public func addEmptySubject(){
+        addSubject(subject: Subject(withName: "New", andMark: 10, andCoef: 1)!)
+    }
+    
+    public func removeSubject(id: UUID){
+        model.removeSubject(id: id)
     }
     
     private func setSubjectsListeners(){

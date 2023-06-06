@@ -18,7 +18,7 @@ struct EditableUe: View {
         VStack(alignment: .leading){
             
             VStack{
-                TextField("Nom de l'UE",text: $ueVM.name)
+                TextField("Nom de l'UE", text: $ueVM.name)
                 .font(.title)
                 .foregroundColor(.blue.opacity(0.6))
                 .padding(.horizontal, 7)
@@ -29,7 +29,7 @@ struct EditableUe: View {
             HStack{
                 Text("Coef : ")
                 VStack{
-                    TextField("Nom de l'UE", value: $ueVM.coef, format: .number)
+                    TextField("Coef de l'UE", value: $ueVM.coef, format: .number)
                     .font(.body)
                     .foregroundColor(.blue.opacity(0.6))
                     .padding(.horizontal, 7)
@@ -38,13 +38,25 @@ struct EditableUe: View {
                 .cornerRadius(8)
             }
             
-            Text("Liste des Matières")
-                .padding(.vertical)
-                .bold()
-                .font(.title)
+            HStack{
+                Text("Liste des Matières")
+                    .padding(.vertical)
+                    .bold()
+                    .font(.title)
+                Spacer()
+                Button(action: {
+                    ueVM.addEmptySubject()
+                }) {
+                    Image(systemName: "plus.app.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 22)
+                }
+            }
+            
             
             ForEach(ueVM.subjects){sub in
-                EditableSubject(subjectVM: sub)
+                EditableSubject(subjectVM: sub, ueVM: ueVM)
             }
             
             Divider()
