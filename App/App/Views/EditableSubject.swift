@@ -17,13 +17,27 @@ struct EditableSubject: View {
     var body: some View {
         VStack{
             Divider()
-            TextField("Nom de l'UE",text: $subjectVM.name)
-            .font(.body)
             
+            VStack{
+                TextField("Nom de l'UE",text: $subjectVM.name)
+                .font(.body)
+                .foregroundColor(.blue.opacity(0.6))
+                .padding(.horizontal, 7)
+            }
+            .background(.gray.opacity(0.1))
+            .cornerRadius(8)
             
             HStack{
                 Text("Coef : ")
-                TextField("Nom de l'UE", value: $subjectVM.coef, format: .number)
+                
+                VStack{
+                    TextField("Nom de l'UE", value: $subjectVM.coef, format: .number)
+                    .font(.body)
+                    .foregroundColor(.blue.opacity(0.6))
+                    .padding(.horizontal, 7)
+                }
+                .background(.gray.opacity(0.1))
+                .cornerRadius(8)
             }
         }
     }
