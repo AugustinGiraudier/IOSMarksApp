@@ -11,32 +11,24 @@ import Stub
 
 struct EditableUe: View {
     
-    @Binding
-    public var ueVM : UEVM?
+    @ObservedObject
+    public var ueVM : UEVM
     
     var body: some View {
-        if ueVM == nil{
-            Text("Error...")
-        }
-        else{
-            VStack{
-                TextField("Nom de l'UE",text: Binding(
-                    get: { self.ueVM?.name ?? "No data..." },
-                    set: { self.ueVM?.name = $0 }
-                ))
-                .font(.title)
-                
-                
-                HStack{
-                    Text("Coef : ")
-                    TextField("Nom de l'UE",text: Binding(
-                        get: { "\(ueVM?.coef ?? 1)" },
-                        set: { self.ueVM?.coef = Int($0) ?? 1 }
-                    ))
-                }
-                
-                Spacer()
+        VStack{
+            TextField("Nom de l'UE",text: $ueVM.name)
+            .font(.title)
+
+            HStack{
+                Text("Coef : ")
+                TextField("Nom de l'UE", value: $ueVM.coef, format: .number)
             }
+            
+            ForEach(ueVM.subjects){sub in
+                EditableSubject(subjectVM: sub)
+            }
+
+            Spacer()
         }
     }
 }
@@ -44,6 +36,6 @@ struct EditableUe: View {
 struct EditableUI_Previews: PreviewProvider {
     
     static var previews: some View {
-        EditableUe(ueVM: .constant(UEVM(withUe: Stub.getOneUe())))
+        EditableUe(ueVM: UEVM(withUe: Stub.getOneUe()))
     }
 }

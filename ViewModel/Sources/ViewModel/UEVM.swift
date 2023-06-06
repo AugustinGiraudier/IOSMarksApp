@@ -96,19 +96,19 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     
     public func onEdited(isCancelled cancelled: Bool = false) {
         if !cancelled {
-            if let copy = self.copy {
-                update(copy: copy)
-            }
+            update()
         }
         self.copy = nil
         isEditing = false
+        objectWillChange.send()
     }
 
-    private func update(copy: UEVM) {
+    private func update() {
         if let copy = self.copy {
             self.name = copy.name
             self.coef = copy.coef
-            self.subjects = copy.subjects
+            self.subjects = copy.subjects.map { $0.clone() }
+            updateSubjects()
             setSubjectsListeners()
         }
     }

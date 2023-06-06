@@ -17,7 +17,7 @@ struct UEPage: View {
     
     var body: some View {
         NavigationStack{
-            ScrollView{
+//            ScrollView{
                 VStack(alignment: .leading){
                     
                     VStack{
@@ -61,8 +61,8 @@ struct UEPage: View {
                 }
                 .sheet(isPresented: $ueVM.isEditing) {
                     NavigationStack {
-                        
-                        EditableUe(ueVM: $ueVM.copy)
+
+                        EditableUe(ueVM: ueVM.copy!)
                             .padding()
                             .toolbar {
                                 ToolbarItem(placement: .confirmationAction) {
@@ -80,7 +80,7 @@ struct UEPage: View {
                 }
                 .padding(.horizontal,10)
             }
-        }
+//        }
     }
 }
 

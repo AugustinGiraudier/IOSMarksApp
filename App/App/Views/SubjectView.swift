@@ -10,6 +10,7 @@ import ViewModel
 import Stub
 
 struct SubjectView: View {
+    
     @ObservedObject
     public var subjectVM : SubjectVM
 

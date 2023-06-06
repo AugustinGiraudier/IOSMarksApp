@@ -109,6 +109,10 @@ public class SubjectVM: BaseVM, Identifiable, Equatable {
     public static func == (lhs: SubjectVM, rhs: SubjectVM) -> Bool {
         lhs.id == rhs.id
     }
+    
+    public func clone() -> SubjectVM{
+        SubjectVM(withSubject: Subject(withName: name, andMark: mark, andCoef: coef)!)
+    }
 
 }
 
