@@ -20,7 +20,7 @@ struct AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView(uesVM: uesVM, groupsVM: groupsVM)
+            HomePage(uesVM: uesVM, groupsVM: groupsVM)
             .onAppear(){
                 groupsVM.updateWithUesVM(uesVM: uesVM)
             }

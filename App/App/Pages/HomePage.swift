@@ -9,7 +9,7 @@ import SwiftUI
 import ViewModel
 import Stub
 
-struct HomeView: View {
+struct HomePage: View {
     
     @ObservedObject
     public var uesVM : UEsVM
@@ -41,7 +41,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        HomeView(
+        HomePage(
             uesVM: UEsVM(withUes: Stub.getAllUes()),
             groupsVM: GroupsVM(withGroups: Stub.getAllGroups())
         )
