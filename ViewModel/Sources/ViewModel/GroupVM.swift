@@ -8,8 +8,9 @@
 import Foundation
 import Model
 
+
 @available(iOS 13.0, *)
-public class GroupVM : BaseVM, Identifiable, Equatable{
+public class GroupVM : BaseVM, Identifiable, Hashable{
     
     // ============================================== //
     //          Member data
@@ -87,6 +88,10 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
         lhs.id == rhs.id
     }
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     public func updateUes(){
         model.UEs = self.ues.map{ $0.model }
         self.average = model.Average
@@ -94,7 +99,7 @@ public class GroupVM : BaseVM, Identifiable, Equatable{
     
     public func setUesListeners(){
         ues.forEach{ue in
-            ue.addUpdatedCallback(callback:  {_ in
+            ue.subscribe(source : self, callback:  {_ in
                 self.updateUes()
            })
         }

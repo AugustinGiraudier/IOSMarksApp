@@ -9,7 +9,7 @@ import Foundation
 import Model
 
 @available(iOS 13.0, *)
-public class UEVM : BaseVM, Identifiable, Equatable{
+public class UEVM : BaseVM, Identifiable, Hashable{
     
     // ============================================== //
     //          Member data
@@ -136,7 +136,7 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     
     private func setSubjectsListeners(){
         subjects.forEach{sub in
-            sub.addUpdatedCallback(callback:  {_ in
+            sub.subscribe(source : self, callback:  {_ in
                 self.updateSubjects()
            })
         }
@@ -149,6 +149,10 @@ public class UEVM : BaseVM, Identifiable, Equatable{
     
     public static func == (lhs: UEVM, rhs: UEVM) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
 }
