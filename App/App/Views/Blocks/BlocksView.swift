@@ -60,6 +60,6 @@ struct BlocksView: View {
 
 struct BlocksView_Previews: PreviewProvider {
     static var previews: some View {
-        BlocksView(blocksVM: GroupsVM(withGroups: Stub.getAllGroups()))
+        BlocksView(blocksVM: GroupsVM(withGroups: Stub().getGroups()))
     }
 }

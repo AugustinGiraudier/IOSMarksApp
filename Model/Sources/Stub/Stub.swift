@@ -6,8 +6,11 @@
 
 import Foundation
 import Model
+import Data
 
-public struct Stub{
+public struct Stub : IDataManager{
+    
+    public init(){}
     
     private static let group : Group =
         Group(withName: "Total", andUEs:[
@@ -58,27 +61,27 @@ public struct Stub{
             ])!
         ])!
     
-    public static func getAllUes() -> [UE]{
-        return group.UEs
+    public func getAllUes() -> [UE]{
+        return Stub.group.UEs
     }
     
-    public static func getOneUe() -> UE{
-        return group.UEs[0]
+    public func getOneUe() -> UE{
+        return Stub.group.UEs[0]
     }
     
-    public static func getAllGroups() -> [Group] {
-        return [group, Group(withName: "Projet/Stage", andUEs: [group.UEs[5],group.UEs[6]])!]
+    public func getGroups() -> [Model.Group] {
+        return [Stub.group, Group(withName: "Projet/Stage", andUEs: [Stub.group.UEs[5],Stub.group.UEs[6]])!]
     }
     
-    public static func getOneGroup() -> Group{
-        return group
+    public func getOneGroup() -> Group{
+        return Stub.group
     }
     
-    public static func getManySubjects() -> [Subject]{
+    public func getManySubjects() -> [Subject]{
         return getOneUe().subjects
     }
     
-    public static func getOneSubject() -> Subject{
+    public func getOneSubject() -> Subject{
         return getManySubjects()[0]
     }
     

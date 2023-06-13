@@ -52,6 +52,6 @@ struct SubjectView: View {
 
 struct SubjectView_Previews: PreviewProvider {
     static var previews: some View {
-        SubjectView(subVM: SubjectVM(withSubject: Stub.getOneSubject()))
+        SubjectView(subVM: SubjectVM(withSubject: Stub().getOneSubject()))
     }
 }

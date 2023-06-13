@@ -69,7 +69,7 @@ struct EditableUe: View {
 struct EditableUI_Previews: PreviewProvider {
     
     static var previews: some View {
-        EditableUe(ueVM: UEVM(withUe: Stub.getOneUe()))
+        EditableUe(ueVM: UEVM(withUe: Stub().getOneUe()))
             .padding()
     }
 }

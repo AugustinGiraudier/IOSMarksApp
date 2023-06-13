@@ -48,4 +48,8 @@ public class UEsVM : BaseVM{
         }
         return toReturn
     }
+    
+    public func reload(withUes ues : [UE]){
+        self.model = ues
+    }
 }

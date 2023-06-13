@@ -25,6 +25,7 @@
 		EC8851662A2CD90800471A76 /* Stub in Frameworks */ = {isa = PBXBuildFile; productRef = EC8851652A2CD90800471A76 /* Stub */; };
 		EC88516A2A2CF1EE00471A76 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8851692A2CF1EE00471A76 /* SubjectView.swift */; };
 		EC88516E2A2D2E4D00471A76 /* ViewModel in Frameworks */ = {isa = PBXBuildFile; productRef = EC88516D2A2D2E4D00471A76 /* ViewModel */; };
+		ECE047BF2A38FEC900160C5D /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = ECE047BE2A38FEC900160C5D /* Data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 			files = (
 				EC8851662A2CD90800471A76 /* Stub in Frameworks */,
 				EC88516E2A2D2E4D00471A76 /* ViewModel in Frameworks */,
+				ECE047BF2A38FEC900160C5D /* Data in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +227,7 @@
 			packageProductDependencies = (
 				EC8851652A2CD90800471A76 /* Stub */,
 				EC88516D2A2D2E4D00471A76 /* ViewModel */,
+				ECE047BE2A38FEC900160C5D /* Data */,
 			);
 			productName = App;
 			productReference = EC01597F2A20B01E00D6C3F6 /* App.app */;
@@ -678,6 +681,10 @@
 		EC88516D2A2D2E4D00471A76 /* ViewModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ViewModel;
+		};
+		ECE047BE2A38FEC900160C5D /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

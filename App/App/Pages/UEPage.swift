@@ -87,6 +87,6 @@ struct UEPage: View {
 
 struct UEPage_Previews: PreviewProvider {
     static var previews: some View {
-        UEPage(ueVM: UEVM(withUe: Stub.getOneUe()))
+        UEPage(ueVM: UEVM(withUe: Stub().getOneUe()))
     }
 }

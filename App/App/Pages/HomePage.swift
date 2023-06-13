@@ -42,8 +42,8 @@ struct HomeView_Previews: PreviewProvider {
     
     static var previews: some View {
         HomePage(
-            uesVM: UEsVM(withUes: Stub.getAllUes()),
-            groupsVM: GroupsVM(withGroups: Stub.getAllGroups())
+            uesVM: UEsVM(withUes: Stub().getAllUes()),
+            groupsVM: GroupsVM(withGroups: Stub().getGroups())
         )
     }
 }

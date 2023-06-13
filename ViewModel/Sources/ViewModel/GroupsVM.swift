@@ -15,7 +15,12 @@ public class GroupsVM : BaseVM{
     //          Member data
     // ============================================== //
     
-    public private(set) var model : [Group]
+    public private(set) var model : [Group]{
+        didSet{
+            groups = model.map { GroupVM(withGrp: $0)}
+            ModelChanged()
+        }
+    }
     
     @Published
     public var groups: [GroupVM] = []
@@ -37,5 +42,9 @@ public class GroupsVM : BaseVM{
                 grpvm.ues = uesVM.getUEsVM(ues: mod.UEs)
             }
         }
+    }
+    
+    public func reload(withGroups groups : [Group]){
+        model = groups
     }
 }

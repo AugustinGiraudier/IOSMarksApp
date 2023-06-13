@@ -52,6 +52,6 @@ struct UEsView: View {
 
 struct UEsView_Previews: PreviewProvider {
     static var previews: some View {
-        UEsView(uesVM: UEsVM(withUes: Stub.getAllUes()))
+        UEsView(uesVM: UEsVM(withUes: Stub().getAllUes()))
     }
 }

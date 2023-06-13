@@ -55,6 +55,6 @@ struct UEView: View {
 
 struct UEView_Previews: PreviewProvider {
     static var previews: some View {
-        UEView(ueVM: UEVM(withUe: Stub.getOneUe()), canNavigate: true)
+        UEView(ueVM: UEVM(withUe: Stub().getOneUe()), canNavigate: true)
     }
 }

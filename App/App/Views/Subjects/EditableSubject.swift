@@ -67,6 +67,6 @@ struct EditableSubject: View {
 
 struct EditableSubject_Previews: PreviewProvider {
     static var previews: some View {
-        EditableSubject(subjectVM: SubjectVM(withSubject: Stub.getOneSubject()))
+        EditableSubject(subjectVM: SubjectVM(withSubject: Stub().getOneSubject()))
     }
 }

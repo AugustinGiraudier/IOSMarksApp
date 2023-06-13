@@ -7,22 +7,31 @@
 
 import SwiftUI
 import ViewModel
+import Data
 import Stub
 
 @main
 struct AppApp: App {
     
-    @StateObject
-    public var uesVM : UEsVM = UEsVM(withUes: Stub.getAllUes())
+    private let dataManager : IDataManager = Stub()
     
     @StateObject
-    public var groupsVM : GroupsVM = GroupsVM(withGroups: Stub.getAllGroups())
+    public var uesVM : UEsVM = UEsVM(withUes: [])
+    
+    @StateObject
+    public var groupsVM : GroupsVM = GroupsVM(withGroups: [])
     
     var body: some Scene {
         WindowGroup {
             HomePage(uesVM: uesVM, groupsVM: groupsVM)
             .onAppear(){
+                
+                let groups = dataManager.getGroups()
+                
+                uesVM.reload(withUes: groups[0].UEs)
+                groupsVM.reload(withGroups: groups)
                 groupsVM.updateWithUesVM(uesVM: uesVM)
+                
             }
         }
     }

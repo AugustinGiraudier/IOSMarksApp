@@ -29,6 +29,6 @@ struct BlockView: View {
 
 struct BlockView_Previews: PreviewProvider {
     static var previews: some View {
-        BlockView(blockVM: GroupVM(withGrp: Stub.getOneGroup()))
+        BlockView(blockVM: GroupVM(withGrp: Stub().getOneGroup()))
     }
 }
