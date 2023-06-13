@@ -23,6 +23,7 @@ public class GroupVM : BaseVM, Identifiable, Hashable{
                 name = model.Name
             }
             if !uesEqualsModel() {
+                unsubscribeFromAllUes()
                 ues = model.UEs.map { UEVM(withUe: $0) }
             }
             if average != model.Average {
@@ -78,9 +79,11 @@ public class GroupVM : BaseVM, Identifiable, Hashable{
     
     public func addUe(ue : UE){
         _=model.addUE(UEToAdd: ue)
+        ues.first{ $0.id == id }?.subscribe(source: self, callback: {_ in self.updateUes() })
     }
     
     public func removeUe(ue : UE){
+        ues.first{ $0.id == id }?.unsubscribe(source: self)
         model.removeUE(UEToRemove: ue)
     }
     
@@ -102,6 +105,12 @@ public class GroupVM : BaseVM, Identifiable, Hashable{
             ue.subscribe(source : self, callback:  {_ in
                 self.updateUes()
            })
+        }
+    }
+    
+    private func unsubscribeFromAllUes() {
+        ues.forEach{ ue in
+            ue.unsubscribe(source: self)
         }
     }
 }

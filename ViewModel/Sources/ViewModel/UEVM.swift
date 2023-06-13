@@ -25,6 +25,7 @@ public class UEVM : BaseVM, Identifiable, Hashable{
                 coef = model.Coef
             }
             if !SubjectsEqualsModel() {
+                unsubscribeAllSubjects()
                 subjects = model.subjects.map { SubjectVM(withSubject: $0) }
                 setSubjectsListeners()
             }
@@ -108,7 +109,6 @@ public class UEVM : BaseVM, Identifiable, Hashable{
             self.name = copy.name
             self.coef = copy.coef
             self.subjects = copy.subjects.map { $0.clone() }
-            updateSubjects()
             setSubjectsListeners()
         }
     }
@@ -124,6 +124,7 @@ public class UEVM : BaseVM, Identifiable, Hashable{
     
     public func addSubject(subject: Subject){
         _=model.addSubject(subjectToAdd: subject)
+        subjects.first{ $0.id == id }?.subscribe(source: self, callback: {_ in self.updateSubjects() })
     }
     
     public func addEmptySubject(){
@@ -131,6 +132,7 @@ public class UEVM : BaseVM, Identifiable, Hashable{
     }
     
     public func removeSubject(id: UUID){
+        subjects.first{ $0.id == id }?.unsubscribe(source: self)
         model.removeSubject(id: id)
     }
     
@@ -140,6 +142,10 @@ public class UEVM : BaseVM, Identifiable, Hashable{
                 self.updateSubjects()
            })
         }
+    }
+    
+    private func unsubscribeAllSubjects(){
+        subjects.forEach{ sub in sub.unsubscribe(source: self) }
     }
     
     public func updateSubjects(){
