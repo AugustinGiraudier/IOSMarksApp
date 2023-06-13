@@ -9,7 +9,8 @@ import Foundation
 import Model
 
 @available(iOS 13.0, *)
-public class GroupsVM : BaseVM{
+public class GroupsVM : BaseVM, Hashable{
+        
     
     // ============================================== //
     //          Member data
@@ -17,7 +18,11 @@ public class GroupsVM : BaseVM{
     
     public private(set) var model : [Group]{
         didSet{
-            groups = model.map { GroupVM(withGrp: $0)}
+            if !groupsEqualsModel(){
+                unscubscribeFromAllGroups()
+                groups = model.map { GroupVM(withGrp: $0)}
+                subscribeToAllGroups()
+            }
             ModelChanged()
         }
     }
@@ -33,6 +38,7 @@ public class GroupsVM : BaseVM{
         self.model = groups
         self.groups = model.map { GroupVM(withGrp: $0) }
         super.init()
+        subscribeToAllGroups()
     }
     
     public func updateWithUesVM(uesVM : UEsVM){
@@ -44,7 +50,43 @@ public class GroupsVM : BaseVM{
         }
     }
     
+    private func groupsEqualsModel() -> Bool {
+        return model.count == groups.count
+        && model.allSatisfy({ grp in
+            groups.contains { grpVM in
+                grpVM.model == grp
+            }
+        })
+    }
+    
     public func reload(withGroups groups : [Group]){
         model = groups
+    }
+    
+    private func onGroupChanged(baseVM : BaseVM){
+        if let groupVM = baseVM as? GroupVM{
+            if let id = (model.firstIndex { $0.id == groupVM.id }){
+                model[id] = groupVM.model
+            }
+        }
+    }
+    
+    public func subscribeToAllGroups(){
+        groups.forEach{ grp in
+            grp.subscribe(source: self, callback: onGroupChanged)
+        }
+    }
+    
+    public func unscubscribeFromAllGroups(){
+        groups.forEach{ grp in
+            grp.unsubscribe(source: self)
+        }
+    }
+    
+    public static func == (lhs: GroupsVM, rhs: GroupsVM) -> Bool {
+        true
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(true)
     }
 }

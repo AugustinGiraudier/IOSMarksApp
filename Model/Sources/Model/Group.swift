@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Group : Identifiable, Equatable, Averagable{
+public struct Group : Identifiable, Equatable, Averagable, Codable{
     
     // ==========================================
     //      Attributs and Properties

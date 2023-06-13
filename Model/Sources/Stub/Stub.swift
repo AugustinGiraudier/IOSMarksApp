@@ -85,4 +85,8 @@ public struct Stub : IDataManager{
         return getManySubjects()[0]
     }
     
+    public func saveGroups(groups: [Model.Group]) {
+        
+    }
+    
 }

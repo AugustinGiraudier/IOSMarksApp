@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UE : Identifiable, Equatable, Markable, Averagable{
+public struct UE : Identifiable, Equatable, Markable, Averagable, Codable{
     
     // ==========================================
     //      Attributs and Properties

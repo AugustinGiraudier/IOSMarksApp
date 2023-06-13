@@ -9,11 +9,14 @@ import SwiftUI
 import ViewModel
 import Data
 import Stub
+import JsonPersisting
 
 @main
 struct AppApp: App {
     
-    private let dataManager : IDataManager = Stub()
+    @Environment(\.scenePhase) private var scenePhase
+    
+    private let dataManager : IDataManager = JsonDataProvider()
     
     @StateObject
     public var uesVM : UEsVM = UEsVM(withUes: [])
@@ -26,12 +29,21 @@ struct AppApp: App {
             HomePage(uesVM: uesVM, groupsVM: groupsVM)
             .onAppear(){
                 
-                let groups = dataManager.getGroups()
+                var groups = dataManager.getGroups()
+                
+                if groups.count == 0{
+                    groups = Stub().getGroups()
+                }
                 
                 uesVM.reload(withUes: groups[0].UEs)
                 groupsVM.reload(withGroups: groups)
                 groupsVM.updateWithUesVM(uesVM: uesVM)
                 
+            }
+            .onChange(of: scenePhase){phase in
+                if phase == .inactive {
+                    dataManager.saveGroups(groups: groupsVM.model)
+                }
             }
         }
     }

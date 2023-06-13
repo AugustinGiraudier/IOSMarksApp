@@ -11,5 +11,6 @@ import Model
 public protocol IDataManager{
     
     func getGroups() -> [Group]
+    func saveGroups(groups : [Group]) -> Void
     
 }

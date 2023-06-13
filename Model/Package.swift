@@ -16,6 +16,9 @@ let package = Package(
         .library(
             name: "Data",
             targets: ["Data"]),
+        .library(
+            name: "JsonPersisting",
+            targets: ["JsonPersisting"]),
         
     ],
     dependencies: [
@@ -36,6 +39,9 @@ let package = Package(
             dependencies: ["Model"]),
         .target(
             name: "Stub",
+            dependencies: ["Model","Data"]),
+        .target(
+            name: "JsonPersisting",
             dependencies: ["Model","Data"]),
 
     ]
